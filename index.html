@@ -163,7 +163,53 @@
             text-align: center;
             animation: pulse 2s infinite;
         }
-/* Novo Estilo de Valer/Raspadinha Simplificado */
+/* Estilo dos Vales */
+        .raspadinha-container {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        @media(min-width: 480px) {
+            .raspadinha-container { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .raspadinha-card {
+            background: #fffbf4;
+            border: 2px solid #e09f3e;
+            border-radius: 12px;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .premio-texto {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--cor-principal);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .btn-revelar {
+            background: linear-gradient(135deg, #bc9a5c, #e09f3e);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            width: 90%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }/* Estilo dos Vales */
         .raspadinha-container {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
@@ -330,18 +376,18 @@ Seguimos caminhos diferentes. A vida continuou, os dias passaram e ficamos dista
         <h3>✨ Raspadinha do Amor</h3>
             <p style="font-size: 0.9rem; color: #666; margin-top: 0;">Clique ou passe o dedo para raspar e descobrir seus vales. E lembre-se: você pode resgatá-los a qualquer momento... kkkk 😈</p>
             
-            <div class="raspadinha-container">
+          <div class="raspadinha-container">
                 <div class="raspadinha-card">
-                    <span>🍕 <br> Mamadinha</span>
-                    <div class="raspadinha-capa" onclick="raspar(this)">Raspe aqui ✨</div>
+                    <button class="btn-revelar" onclick="revelarPremio(this)">Descobrir Vale ✨</button>
+                    <span class="premio-texto oculto"> <br> Mamadinha</span>
                 </div>
                 <div class="raspadinha-card">
-                    <span>🍦 <br> Sexo no Carro</span>
-                    <div class="raspadinha-capa" onclick="raspar(this)">Raspe aqui ✨</div>
+                    <button class="btn-revelar" onclick="revelarPremio(this)">Descobrir Vale ✨</button>
+                    <span class="premio-texto oculto"> <br> Sexo no Carro</span>
                 </div>
                 <div class="raspadinha-card">
-                    <span>💆‍♂️ <br> Cuzinho</span>
-                    <div class="raspadinha-capa" onclick="raspar(this)">Raspe aqui ✨</div>
+                    <button class="btn-revelar" onclick="revelarPremio(this)">Descobrir Vale ✨</button>
+                    <span class="premio-texto oculto"> <br> Cuzinho</span>
                 </div>
             </div>
             
@@ -358,7 +404,7 @@ Seguimos caminhos diferentes. A vida continuou, os dias passaram e ficamos dista
             </div>
 
    
-          <p style="text-align: center; font-weight: bold; color: var(--cor-principal); margin-top: 35px; font-size: 1.1rem;">
+         <p style="text-align: center; font-weight: bold; color: var(--cor-principal); margin-top: 35px; font-size: 1.1rem;">
                 Feliz nosso primeiro Dia dos Namorados! <br> Te amo daqui até outras vidas. 💖
             </p>
         </div>
@@ -388,14 +434,14 @@ Seguimos caminhos diferentes. A vida continuou, os dias passaram e ficamos dista
             }
         }
 
-        // Lógica simplificada e 100% funcional para navegadores mobile
+        // Função corrigida
         function revelarPremio(botao) {
             const card = botao.parentElement;
             const textoPremio = card.querySelector('.premio-texto');
             
-            botao.classList.add('oculto'); // Some com o botão
+            botao.style.display = 'none'; // Esconde o botão usando estilo direto
             if(textoPremio) {
-                textoPremio.classList.remove('oculto'); // Mostra o prêmio
+                textoPremio.classList.remove('oculto'); // Mostra o prêmio oculto
             }
         }
     </script>
