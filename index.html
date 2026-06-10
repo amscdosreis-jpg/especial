@@ -163,19 +163,7 @@
             text-align: center;
             animation: pulse 2s infinite;
         }
-/* Estilos da Raspadinha */
-        .raspadinha-container {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        @media(min-width: 480px) {
-            .raspadinha-container { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        .raspadinha-card {
+.raspadinha-card {
             position: relative;
             background: #fffbf4;
             border: 2px solid #e09f3e;
@@ -192,6 +180,7 @@
             color: var(--cor-principal);
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            cursor: pointer;
         }
 
         .raspadinha-capa {
@@ -206,12 +195,12 @@
             justify-content: center;
             align-items: center;
             font-size: 1.2rem;
-            cursor: pointer;
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease;
             user-select: none;
+            z-index: 2;
         }
 
-        .raspadinha-capa.raspado {
+        .raspadinha-card.revelado .raspadinha-capa {
             opacity: 0;
             pointer-events: none;
             transform: scale(1.1);
