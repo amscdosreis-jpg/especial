@@ -364,7 +364,7 @@ Seguimos caminhos diferentes. A vida continuou, os dias passaram e ficamos dista
             </div>
 
    
-            <p style="text-align: center; font-weight: bold; color: var(--cor-principal); margin-top: 30px; font-size: 1.1rem;">
+           <p style="text-align: center; font-weight: bold; color: var(--cor-principal); margin-top: 35px; font-size: 1.1rem;">
                 Feliz nosso primeiro Dia dos Namorados! <br> Te amo daqui até outras vidas. 💖
             </p>
         </div>
@@ -392,6 +392,11 @@ Seguimos caminhos diferentes. A vida continuou, os dias passaram e ficamos dista
                 proximoQuiz.classList.remove('oculto');
                 proximoQuiz.scrollIntoView({ behavior: 'smooth' });
             }
+        }
+
+        // Nova lógica corrigida: adiciona a classe no bloco inteiro
+        function raspar(card) {
+            card.classList.add('revelado');
         }
     </script>
 </body>
