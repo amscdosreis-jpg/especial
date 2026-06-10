@@ -163,47 +163,52 @@
             text-align: center;
             animation: pulse 2s infinite;
         }
-.raspadinha-card {
-            position: relative;
+/* Novo Estilo de Valer/Raspadinha Simplificado */
+        .raspadinha-container {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        @media(min-width: 480px) {
+            .raspadinha-container { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .raspadinha-card {
             background: #fffbf4;
             border: 2px solid #e09f3e;
             border-radius: 12px;
-            height: 100px;
+            min-height: 100px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 10px;
-            font-size: 0.9rem;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .premio-texto {
+            font-size: 0.95rem;
             font-weight: 600;
             color: var(--cor-principal);
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            cursor: pointer;
+            animation: fadeIn 0.3s ease;
         }
 
-        .raspadinha-capa {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .btn-revelar {
             background: linear-gradient(135deg, #bc9a5c, #e09f3e);
             color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            user-select: none;
-            z-index: 2;
-        }
-
-        .raspadinha-card.revelado .raspadinha-capa {
-            opacity: 0;
-            pointer-events: none;
-            transform: scale(1.1);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            width: 90%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -353,7 +358,7 @@ Seguimos caminhos diferentes. A vida continuou, os dias passaram e ficamos dista
             </div>
 
    
-           <p style="text-align: center; font-weight: bold; color: var(--cor-principal); margin-top: 35px; font-size: 1.1rem;">
+          <p style="text-align: center; font-weight: bold; color: var(--cor-principal); margin-top: 35px; font-size: 1.1rem;">
                 Feliz nosso primeiro Dia dos Namorados! <br> Te amo daqui até outras vidas. 💖
             </p>
         </div>
@@ -383,9 +388,15 @@ Seguimos caminhos diferentes. A vida continuou, os dias passaram e ficamos dista
             }
         }
 
-        // Nova lógica corrigida: adiciona a classe no bloco inteiro
-        function raspar(card) {
-            card.classList.add('revelado');
+        // Lógica simplificada e 100% funcional para navegadores mobile
+        function revelarPremio(botao) {
+            const card = botao.parentElement;
+            const textoPremio = card.querySelector('.premio-texto');
+            
+            botao.classList.add('oculto'); // Some com o botão
+            if(textoPremio) {
+                textoPremio.classList.remove('oculto'); // Mostra o prêmio
+            }
         }
     </script>
 </body>
