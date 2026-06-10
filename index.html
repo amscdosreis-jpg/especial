@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Jogo do Nosso Amor ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cor-fundo: #fcf6f5;
+            --cor-principal: #9e2a2b;
+            --cor-secundaria: #e09f3e;
+            --cor-texto: #333333;
+            --cor-card: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--cor-principal);
+            margin: 0;
+        }
+
+        .section-card {
+            background: var(--cor-card);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .oculto {
+            display: none;
+        }
+
+        h2 {
+            color: var(--cor-principal);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--cor-fundo);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--cor-principal);
+            font-size: 1.2rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .btn-opcao {
+            display: block;
+            width: 100%;
+            background-color: #f7f7f7;
+            color: var(--cor-texto);
+            border: 2px solid #eee;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .btn-opcao:hover {
+            background-color: #fff0f2;
+            border-color: var(--cor-principal);
+            transform: translateX(5px);
+        }
+
+        .btn-avancar {
+            background-color: var(--cor-principal);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .mensagem-erro {
+            color: #d90429;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        .timeline { position: relative; padding-left: 20px; border-left: 2px solid var(--cor-secundaria); margin-top: 20px; }
+        .timeline-item { position: relative; margin-bottom: 25px; }
+        .timeline-item::before { content: ''; position: absolute; left: -27px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background-color: var(--cor-principal); }
+        .timeline-date { font-weight: 600; color: var(--cor-principal); font-size: 0.9rem; }
+        .timeline-title { font-weight: 600; margin: 2px 0; }
+
+        .love-letter { 
+            font-size: 1.02rem; 
+            text-align: left; 
+            color: #444;
+            background: #fffbf4; 
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--cor-principal);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+        }
+        .love-letter p {
+            margin-bottom: 18px;
+            text-indent: 15px; 
+        }
+        .love-letter p:last-child {
+            margin-bottom: 0;
+        }
+
+        .lista-filmes {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .lista-filmes li {
+            padding: 8px 12px;
+            background: #fdfdfd;
+            border: 1px solid #f0f0f0;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .convite-box {
+            background: #fff0f2;
+            border: 2px dashed var(--cor-principal);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+/* Estilos da Raspadinha */
+        .raspadinha-container {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        @media(min-width: 480px) {
+            .raspadinha-container { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .raspadinha-card {
+            position: relative;
+            background: #fffbf4;
+            border: 2px solid #e09f3e;
+            border-radius: 12px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--cor-principal);
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .raspadinha-capa {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #bc9a5c, #e09f3e);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            user-select: none;
+        }
+
+        .raspadinha-capa.raspado {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>O Jogo da Nossa História 🎮</h1>
+            <p style="font-style: italic; color: #666; margin-bottom: 5px;">Prometemos não comemorar... mas regras foram feitas para serem quebradas.</p>
+            <p style="font-size: 0.9rem; margin-top: 0;">Acerte as perguntas para desbloquear suas memórias.</p>
+        </header>
+
+        <div id="quiz-fase1" class="section-card">
+            <h2>Fase 1: O Começo de Tudo</h2>
+            <p>Em que mês and ano foi o nosso primeiríssimo encontro, onde tudo começou?</p>
+            <button class="btn-opcao" onclick="verificarResposta(1, false)">A) Dezembro de 2023</button>
+            <button class="btn-opcao" onclick="verificarResposta(1, true)">B) Janeiro de 2024</button>
+            <button class="btn-opcao" onclick="verificarResposta(1, false)">C) Março de 2024</button>
+            <p id="erro-fase1" class="mensagem-erro oculto">❌ Ih... errou! Tenta lembrar direito, hein?</p>
+        </div>
+
+        <div id="recompensa-fase1" class="section-card oculto">
+            <h2>⏳ Desbloqueado: Nossa Linha do Tempo</h2>
+            <p style="font-size: 0.9rem; color: #666;">Olha só o caminho que o destino desenhou para a gente:</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Janeiro de 2024</div>
+                    <div class="timeline-title">O Primeiro Encontro</div>
+                    <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #555;">Nosso primeiro encontro aconteceu em janeiro de 2024. Naquele momento, parecia que a vida tinha nos apresentado apenas para nos conhecermos. Não foi perfeito, não foi o começo de uma grande história de amor… pelo menos não ainda. Mas, sem que soubéssemos, aquele encontro plantou uma semente que floresceria mais tarde.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 - 2025</div>
+                    <div class="timeline-title">O Desencontro</div>
+                    <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #555;">O tempo fez seu trabalho.
+Seguimos caminhos diferentes. A vida continuou, os dias passaram e ficamos distantes. Mas algumas histórias não terminam quando parecem terminar. Às vezes, elas apenas aguardam o momento certo para recomeçar.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Abril de 2025</div>
+                    <div class="timeline-title">O Reencontro</div>
+                    <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #555;">Em abril de 2025, você me encontrou em uma rede social e enviou uma mensagem simples: “Saudades 🥹”. Eu ignorei. Você insistiu. Eu ignorei de novo. Você continuou insistindo. E ainda bem que insistiu. Porque aquele reencontro mudou tudo.</p>
+                </div>
+                <div class="timeline-item" style="margin-bottom: 0;">
+                    <div class="timeline-date">Mês que vem</div>
+                    <div class="timeline-title">1 Ano Juntos! 👑</div>
+                    <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #555;">Nosso primeiro Dia dos Namorados oficial e quase 365 dias intensos de muito amor.</p>
+                </div>
+            </div>
+            <button class="btn-avancar" onclick="irParaProximaFase(2)">Ir para a Fase 2 ➡️</button>
+        </div>
+
+        <div id="quiz-fase2" class="section-card oculto">
+            <h2>Fase 2: O Reencontro inesperado</h2>
+            <p>Dizem que o que é nosso sempre nos encontra. Por qual rede social você me achou de novo em abril de 2025?</p>
+            <button class="btn-opcao" onclick="verificarResposta(2, false)">A) Instagram (na DM antiga)</button>
+            <button class="btn-opcao" onclick="verificarResposta(2, false)">B) No meio de um sonho</button>
+            <button class="btn-opcao" onclick="verificarResposta(2, true)">C) TikTok</button>
+            <p id="erro-fase2" class="mensagem-erro oculto">❌ Errado! Não foi por aí não. Pensa um pouquinho!</p>
+        </div>
+
+        <div id="recompensa-fase2" class="section-card oculto">
+            <h2>✨ Desbloqueado: Uma Carta para Você</h2>
+            <div class="love-letter">
+                <p>Meu amor,</p>
+                <p>Hoje é o nosso primeiro Dia dos Namorados juntos, e enquanto escrevo essa carta, percebo que nenhuma palavra parece suficiente para explicar o que você significa para mim.</p>
+                <p>Eu sempre ouvi dizer que algumas pessoas chegam para mudar a nossa vida. Mas nunca imaginei que um dia eu entenderia isso de verdade.</p>
+                <p>Você chegou de uma forma tão natural que, aos poucos, foi ocupando espaços que eu nem sabia que estavam vazios. E quando percebi, já não conseguia imaginei meus dias sem as suas mensagens, sem a sua voz, sem os seus abraços, sem a sua presença.</p>
+                <p><strong>Você se tornou casa.</strong></p>
+                <p>E talvez essa seja a melhor forma de descrever o que sinto. Porque casa não é um lugar. É onde encontramos paz depois dos dias difíceis. É onde podemos ser quem realmente somos. É onde nos sentimos seguros. E é exatamente isso que encontro em você.</p>
+                <p>Ao seu lado, vivi momentos que quero guardar para sempre. Momentos simples, daqueles que talvez passem despercebidos para o resto do mundo, mas que para mim têm um valor imenso. Porque foram vividos com você.</p>
+                                <p>Às vezes eu olho para a nossa história e sinto que ela aconteceu do jeito que precisava acontecer. Como se todas as escolhas, todos os caminhos errados, todos os desencontros e todas as dificuldades tivessem me levado até você.</p>
+                <p>Talvez por isso eu tenha essa sensação tão forte de que te conheço há muito mais tempo. Como se a sua alma fosse familiar para a minha. Como se, em algum lugar, eu já soubesse que um dia iria te encontrar.</p>
+                <p>Você esteve ao meu lado em momentos em que eu me senti perdida, cansada e cheia de dúvidas. E mesmo sem perceber, me ajudou a ser mais forte. Você me mostrou que amor não é apenas sobre os dias fáceis. É sobre permanecer. É sobre escolher estar presente. É sobre construir juntos.</p>
+                <p>Eu não sei o que o futuro reserva para nós. A vida muda, os planos mudam, os caminhos às vezes surpreendem. Mas existe uma coisa da qual tenho certeza: você se tornou uma das pessoas mais importantes da minha vida.</p>
+                <p>E se daqui a muitos anos alguém me perguntar qual foi uma das melhores coisas que já me aconteceram, eu vou responder sem pensar duas vezes: foi ter encontrado você.</p>
+                <p>Obrigada por existir. Obrigada por me amar. Obrigada por me permitir amar você.</p>
+                <p>Feliz nosso primeiro Dia dos Namorados.</p>
+                <p>Eu te amo mais do que consigo colocar em palavras.</p>
+                <p style="text-align: right; font-weight: bold; margin-top: 20px;">Para sempre sua, <br>Amanda ❤️</p>
+            </div>
+            <button class="btn-avancar" onclick="irParaProximaFase(3)">Ir para a Fase Final 👑</button>
+        </div>
+
+        <div id="quiz-fase3" class="section-card oculto">
+            <h2>Fase 3: O Presente e o Futuro</h2>
+            <p>Mês que vem completamos 1 ano juntos! Para celebrar, o que eu preparei que você tem muita preguiça de fazer sozinho?</p>
+            <button class="btn-opcao" onclick="verificarResposta(3, true)">A) Uma Playlist personalizada no Spotify</button>
+            <button class="btn-opcao" onclick="verificarResposta(3, false)">B) Lavar a louça do jantar</button>
+            <button class="btn-opcao" onclick="verificarResposta(3, false)">C) Escolher o filme do final de semana</button>
+            <p id="erro-fase3" class="mensagem-erro oculto">❌ Errou! Essa tá muito fácil, foca!</p>
+        </div>
+
+        <div id="recompensa-fase3" class="section-card oculto">
+            <h2>🎵 Você venceu o jogo! Aqui estão seus prêmios:</h2>
+            <p style="font-size: 0.9rem; color: #666;">Sua playlist exclusiva com as músicas que você curte:</p>
+            
+            <div style="text-align: center; margin-bottom: 25px;">
+                <iframe 
+    src="https://open.spotify.com/embed/playlist/2ULfXNCZSMtkfALfkynoBX?si=AKWjKpGzTcu-e83JFSp2qw"
+    width="100%"
+    height="152"
+    frameborder="0"
+    allowfullscreen
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy">
+</iframe>
+
+            <h3>🎬 Filmes que quero assistir com você</h3>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 0;">Já temos a programação garantida:</p>
+            <ul class="lista-filmes">
+                <li>🍿 Cães de Guerra</li>
+                <li>🍿 Bastardos Inglórios</li>
+                <li>🍿 Top Gun</li>
+                <li>🍿 Até o Último Homem </li>
+                <li>🍿 Toy Story 5</li>
+            </ul>
+
+        <h3>✨ Raspadinha do Amor</h3>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 0;">Clique ou passe o dedo para raspar e descobrir seus vales. E lembre-se: você pode resgatá-los a qualquer momento... kkkk 😈</p>
+            
+            <div class="raspadinha-container">
+                <div class="raspadinha-card">
+                    <span>🍕 <br> Mamadinha</span>
+                    <div class="raspadinha-capa" onclick="raspar(this)">Raspe aqui ✨</div>
+                </div>
+                <div class="raspadinha-card">
+                    <span>🍦 <br> Sexo no Carro</span>
+                    <div class="raspadinha-capa" onclick="raspar(this)">Raspe aqui ✨</div>
+                </div>
+                <div class="raspadinha-card">
+                    <span>💆‍♂️ <br> Cuzinho</span>
+                    <div class="raspadinha-capa" onclick="raspar(this)">Raspe aqui ✨</div>
+                </div>
+            </div>
+            
+
+            <div class="convite-box">
+                <h3 style="margin-top: 0; color: var(--cor-principal);">💌 Um Convite Especial...</h3>
+                <p style="margin-bottom: 10px;">Como você completou o jogo e descobriu todos os prêmios, ganhou o bônus principal:</p>
+                <p style="font-size: 1.15rem; font-weight: 600; color: var(--cor-principal); margin: 15px 0;">
+                    Temos um date oficial marcado só nós dois! <br>
+                    📅 Dia 11/06 (Amanhã) <br>
+                    ⏰ Às 21:00 horas
+                </p>
+                <p style="font-style: italic; font-size: 0.9rem; color: #555; margin-bottom: 0;">Esteja pronto, não aceito "não" como resposta! 😉❤️</p>
+            </div>
+
+   
+            <p style="text-align: center; font-weight: bold; color: var(--cor-principal); margin-top: 30px; font-size: 1.1rem;">
+                Feliz nosso primeiro Dia dos Namorados! <br> Te amo daqui até outras vidas. 💖
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        function verificarResposta(fase, resultado) {
+            const erroMsg = document.getElementById(`erro-fase${fase}`);
+            const quizCard = document.getElementById(`quiz-fase${fase}`);
+            const recompensaCard = document.getElementById(`recompensa-fase${fase}`);
+
+            if (resultado === true) {
+                if(erroMsg) erroMsg.classList.add('oculto');
+                if(quizCard) quizCard.classList.add('oculto'); 
+                if(recompensaCard) recompensaCard.classList.remove('oculto'); 
+            } else {
+                if(erroMsg) erroMsg.classList.remove('oculto'); 
+            }
+        }
+
+        function irParaProximaFase(proximaFase) {
+            const proximoQuiz = document.getElementById(`quiz-fase${proximaFase}`);
+            if(proximoQuiz) {
+                proximoQuiz.classList.remove('oculto');
+                proximoQuiz.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
